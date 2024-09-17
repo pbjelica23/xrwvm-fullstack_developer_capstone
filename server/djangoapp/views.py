@@ -1,10 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.contrib.auth import login, authenticate, logout
-from django.contrib import messages
-from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
-from datetime import datetime
+from django.views.decorators.csrf import csrf_exempt
 import logging
 import json
 from .models import CarMake, CarModel
@@ -45,7 +42,6 @@ def registration_request(request):
     email = data.get('email')
 
     username_exist = User.objects.filter(username=username).exists()
-    email_exist = User.objects.filter(email=email).exists()
 
     if not username_exist:
         user = User.objects.create_user(
