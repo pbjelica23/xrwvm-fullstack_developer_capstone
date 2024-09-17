@@ -1,5 +1,4 @@
 import requests
-from django.http import JsonResponse
 import logging
 import os
 from dotenv import load_dotenv
@@ -13,7 +12,9 @@ logger = logging.getLogger(__name__)
 
 # Retrieve URLs from environment variables
 backend_url = os.getenv('backend_url', default="http://localhost:3030")
-sentiment_analyzer_url = os.getenv('sentiment_analyzer_url', default="http://localhost:5050/")
+sentiment_analyzer_url = os.getenv(
+    'sentiment_analyzer_url', default="http://localhost:5050/"
+)
 
 def get_request(endpoint, **kwargs):
     """Send a GET request to the specified endpoint with optional query parameters."""
