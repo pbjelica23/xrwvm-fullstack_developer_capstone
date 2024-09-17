@@ -9,10 +9,13 @@ class Command(BaseCommand):
     def initiate(self):
         car_make_data = [
             {"name": "NISSAN", "description": "Great cars. Japanese technology"},
-            {"name": "Mercedes", "description": "Great cars. German technology"},
+            {"name": "Mercedes",
+              "description": "Great cars. German technology"},
             {"name": "Audi", "description": "Great cars. German technology"},
-            {"name": "Kia", "description": "Great cars. Korean technology"},
-            {"name": "Toyota", "description": "Great cars. Japanese technology"},
+            {"name": "Kia",
+              "description": "Great cars. Korean technology"},
+            {"name": "Toyota",
+              "description": "Great cars. Japanese technology"},
         ]
 
         car_make_instances = []
