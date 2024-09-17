@@ -6,7 +6,9 @@ import logging
 import json
 from .models import CarMake, CarModel
 from .restapis import (
-    get_request, analyze_review_sentiments, post_review
+    get_request, 
+    analyze_review_sentiments, 
+    post_review
 )
 
 # Get an instance of a logger
@@ -98,7 +100,9 @@ def get_cars(request):
 def get_dealerships(request, state="All"):
     """Retrieve and return a list of dealerships."""
     endpoint = (
-        "/fetchDealers" if state == "All" else f"/fetchDealers/{state}"
+        "/fetchDealers" 
+        if state == "All" 
+        else f"/fetchDealers/{state}"
     )
     dealerships = get_request(endpoint)
 
@@ -157,7 +161,8 @@ def get_dealer_reviews(request, dealer_id):
                 sentiment_response = analyze_review_sentiments(review)
                 review_detail['sentiment'] = (
                     sentiment_response.get('sentiment', 'unknown')
-                    if sentiment_response else 'unknown'
+                    if sentiment_response 
+                    else 'unknown'
                 )
             else:
                 review_detail['sentiment'] = 'unknown'
