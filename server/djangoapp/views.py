@@ -26,10 +26,12 @@ def login_user(request):
     
     return JsonResponse(response_data)
 
+
 def logout_request(request):
     """Logout a user."""
     logout(request)
     return JsonResponse({"status": "Logged out"})
+
 
 @csrf_exempt
 def registration_request(request):
@@ -55,6 +57,7 @@ def registration_request(request):
 
     return JsonResponse(response_data)
 
+
 def get_cars(request):
     """Retrieve and return all car models."""
     if CarMake.objects.count() == 0:
@@ -70,6 +73,7 @@ def get_cars(request):
     
     return JsonResponse({"CarModels": cars})
 
+
 def get_dealerships(request, state="All"):
     """Retrieve and return a list of dealerships."""
     endpoint = "/fetchDealers" if state == "All" else f"/fetchDealers/{state}"
@@ -79,7 +83,9 @@ def get_dealerships(request, state="All"):
 
     if dealerships:
         return JsonResponse({"status": 200, "dealers": dealerships})
+    
     return JsonResponse({"status": 500, "message": "Failed to retrieve dealerships"})
+
 
 def get_dealer_details(request, dealer_id):
     """Retrieve and return details of a specific dealer."""
@@ -89,9 +95,11 @@ def get_dealer_details(request, dealer_id):
         
         if dealership:
             return JsonResponse({"status": 200, "dealer": dealership})
+        
         return JsonResponse({"status": 404, "message": "Dealer not found"})
     
     return JsonResponse({"status": 400, "message": "Bad Request"})
+
 
 def get_dealer_reviews(request, dealer_id):
     """Retrieve and return reviews of a specific dealer with sentiment analysis."""
@@ -114,6 +122,7 @@ def get_dealer_reviews(request, dealer_id):
         return JsonResponse({"status": 200, "reviews": reviews})
     
     return JsonResponse({"status": 400, "message": "Bad Request"})
+
 
 def add_review(request):
     """Submit a review if the user is authenticated."""
