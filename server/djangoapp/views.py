@@ -144,7 +144,8 @@ def get_dealer_details(request, dealer_id):
 
 
 def get_dealer_reviews(request, dealer_id):
-    """Retrieve and return reviews of a specific dealer with sentiment analysis."""
+    """Retrieve and return reviews of a specific dealer with sentiment
+    analysis."""
     if dealer_id:
         endpoint = f"/fetchReviews/dealer/{dealer_id}"
         reviews = get_request(endpoint)
