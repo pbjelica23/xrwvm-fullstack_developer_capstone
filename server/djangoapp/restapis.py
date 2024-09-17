@@ -16,7 +16,6 @@ sentiment_analyzer_url = os.getenv(
     'sentiment_analyzer_url', default="http://localhost:5050/"
 )
 
-
 def get_request(endpoint, **kwargs):
     """Send a GET request to the specified endpoint with optional query parameters."""
     if kwargs:
@@ -36,7 +35,6 @@ def get_request(endpoint, **kwargs):
         logger.error(f"Network error occurred: {req_err}")
     return None
 
-
 def analyze_review_sentiments(text):
     """Analyze the sentiment of a review using the sentiment analyzer service."""
     request_url = f"{sentiment_analyzer_url}analyze/{text}"
@@ -49,7 +47,6 @@ def analyze_review_sentiments(text):
     except requests.exceptions.RequestException as req_err:
         logger.error(f"Network error occurred: {req_err}")
     return None
-
 
 def post_review(data_dict):
     """Post a review to the backend service."""
