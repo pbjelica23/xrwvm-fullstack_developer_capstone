@@ -29,7 +29,9 @@ class CarModel(models.Model):
     dealer_id = models.IntegerField(blank=True, null=True)  # Allow blank and null values
     name = models.CharField(max_length=50)
     car_type = models.CharField(
-        max_length=10, choices=CAR_TYPE_CHOICES, default=SEDAN
+        max_length=10,
+        choices=CAR_TYPE_CHOICES,
+        default=SEDAN
     )
     year = models.IntegerField(
         validators=[

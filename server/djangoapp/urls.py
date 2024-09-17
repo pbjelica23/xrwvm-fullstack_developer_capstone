@@ -7,22 +7,58 @@ app_name = 'djangoapp'
 
 urlpatterns = [
     # Path for registration
-    path('registration', views.registration_request, name='registration'),
+    path(
+        'registration',
+        views.registration_request,
+        name='registration'
+    ),
 
     # Path for login
-    path('login', views.login_user, name='login'),
+    path(
+        'login',
+        views.login_user,
+        name='login'
+    ),
 
     # Path for logout
-    path('logout', views.logout_request, name='logout'),
+    path(
+        'logout',
+        views.logout_request,
+        name='logout'
+    ),
 
-    path('get_cars', views.get_cars, name='get_cars'),
+    path(
+        'get_cars',
+        views.get_cars,
+        name='get_cars'
+    ),
 
-    path('get_dealers/', views.get_dealerships, name='get_dealers'),
-    path('get_dealers/<str:state>/', views.get_dealerships, name='get_dealers_by_state'),
+    path(
+        'get_dealers/',
+        views.get_dealerships,
+        name='get_dealers'
+    ),
+    path(
+        'get_dealers/<str:state>/',
+        views.get_dealerships,
+        name='get_dealers_by_state'
+    ),
 
-    path('dealer/<int:dealer_id>/', views.get_dealer_details, name='dealer_details'),
+    path(
+        'dealer/<int:dealer_id>/',
+        views.get_dealer_details,
+        name='dealer_details'
+    ),
 
-    path('reviews/dealer/<int:dealer_id>/', views.get_dealer_reviews, name='dealer_reviews'),
+    path(
+        'reviews/dealer/<int:dealer_id>/',
+        views.get_dealer_reviews,
+        name='dealer_reviews'
+    ),
 
-    path('add_review', views.add_review, name='add_review'),
+    path(
+        'add_review',
+        views.add_review,
+        name='add_review'
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
