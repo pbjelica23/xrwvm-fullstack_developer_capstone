@@ -25,8 +25,14 @@ class CarModel(models.Model):
         (TRUCK, 'Truck'),
     ]
 
-    car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
-    dealer_id = models.IntegerField(blank=True, null=True)  # Allow blank and null values
+    car_make = models.ForeignKey(
+        CarMake, 
+        on_delete=models.CASCADE
+    )
+    dealer_id = models.IntegerField(
+        blank=True, 
+        null=True
+    )  # Allow blank and null values
     name = models.CharField(max_length=50)
     car_type = models.CharField(
         max_length=10,
