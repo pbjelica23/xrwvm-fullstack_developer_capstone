@@ -1,10 +1,9 @@
-# Uncomment the required imports before adding the code
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
 from datetime import datetime
 import logging
 import json
@@ -14,7 +13,6 @@ from .restapis import get_request, analyze_review_sentiments, post_review
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
-# Create a `login_request` view to handle sign-in request
 @csrf_exempt
 def login_user(request):
     """Authenticate and login a user."""
@@ -31,13 +29,11 @@ def login_user(request):
     
     return JsonResponse(response_data)
 
-# Create a `logout_request` view to handle sign-out request
 def logout_request(request):
     """Logout a user."""
     logout(request)
     return JsonResponse({"status": "Logged out"})
 
-# Create a `registration` view to handle sign-up request
 @csrf_exempt
 def registration_request(request):
     """Register a new user and log them in."""
@@ -114,7 +110,8 @@ def get_dealer_reviews(request, dealer_id):
             review = review_detail.get('review')
             if review:
                 sentiment_response = analyze_review_sentiments(review)
-                review_detail['sentiment'] = sentiment_response.get('sentiment', 'unknown') if sentiment_response else 'unknown'
+                review_detail['sentiment'] = sentiment_response.get('sentiment', 'unknown') \
+                    if sentiment_response else 'unknown'
             else:
                 review_detail['sentiment'] = 'unknown'
         
@@ -127,7 +124,7 @@ def add_review(request):
     if not request.user.is_anonymous:
         data = json.loads(request.body)
         try:
-            response = post_review(data)
+            post_review(data)
             return JsonResponse({"status": 200})
         except Exception as e:
             logger.error(f"Error posting review: {e}")
