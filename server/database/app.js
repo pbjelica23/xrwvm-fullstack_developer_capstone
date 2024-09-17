@@ -17,15 +17,14 @@ const dealerships_data = JSON.parse(
 mongoose.connect("mongodb://mongo_db:27017/", { dbName: "dealershipsDB" });
 
 const Reviews = require("./review");
-
 const Dealerships = require("./dealership");
 
 try {
   Reviews.deleteMany({}).then(() => {
-    Reviews.insertMany(reviews_data["reviews"]);
+    Reviews.insertMany(reviews_data.reviews); // dot notation used here
   });
   Dealerships.deleteMany({}).then(() => {
-    Dealerships.insertMany(dealerships_data["dealerships"]);
+    Dealerships.insertMany(dealerships_data.dealerships); // dot notation used here
   });
 } catch (error) {
   res.status(500).json({ error: "Error fetching documents" });
@@ -90,22 +89,22 @@ app.get("/fetchDealer/:id", async (req, res) => {
   }
 });
 
-//Express route to insert review
+// Express route to insert review
 app.post("/insert_review", express.raw({ type: "*/*" }), async (req, res) => {
   data = JSON.parse(req.body);
   const documents = await Reviews.find().sort({ id: -1 });
-  let new_id = documents[0]["id"] + 1;
+  let new_id = documents[0].id + 1; // dot notation used here
 
   const review = new Reviews({
     id: new_id,
-    name: data["name"],
-    dealership: data["dealership"],
-    review: data["review"],
-    purchase: data["purchase"],
-    purchase_date: data["purchase_date"],
-    car_make: data["car_make"],
-    car_model: data["car_model"],
-    car_year: data["car_year"],
+    name: data.name, // dot notation used here
+    dealership: data.dealership, // dot notation used here
+    review: data.review, // dot notation used here
+    purchase: data.purchase, // dot notation used here
+    purchase_date: data.purchase_date, // dot notation used here
+    car_make: data.car_make, // dot notation used here
+    car_model: data.car_model, // dot notation used here
+    car_year: data.car_year, // dot notation used here
   });
 
   try {
