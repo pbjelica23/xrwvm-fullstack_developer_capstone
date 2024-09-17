@@ -12,17 +12,18 @@ logger = logging.getLogger(__name__)
 
 # Retrieve URLs from environment variables
 backend_url = os.getenv(
-    'backend_url', 
+    'backend_url',
     default="http://localhost:3030"
 )
 sentiment_analyzer_url = os.getenv(
-    'sentiment_analyzer_url', 
+    'sentiment_analyzer_url',
     default="http://localhost:5050/"
 )
 
 
 def get_request(endpoint, **kwargs):
-    """Send a GET request to the specified endpoint with optional query parameters."""
+    """Send a GET request to the specified endpoint with optional query 
+    parameters."""
     if kwargs:
         params = "&".join(
             f"{key}={value}" for key, value in kwargs.items()
@@ -30,7 +31,7 @@ def get_request(endpoint, **kwargs):
         request_url = f"{backend_url}{endpoint}?{params}"
     else:
         request_url = f"{backend_url}{endpoint}"
-    
+
     logger.info(f"GET request to {request_url}")
     try:
         response = requests.get(request_url)
@@ -44,7 +45,8 @@ def get_request(endpoint, **kwargs):
 
 
 def analyze_review_sentiments(text):
-    """Analyze the sentiment of a review using the sentiment analyzer service."""
+    """Analyze the sentiment of a review using the sentiment analyzer 
+    service."""
     request_url = f"{sentiment_analyzer_url}analyze/{text}"
     try:
         response = requests.get(request_url)

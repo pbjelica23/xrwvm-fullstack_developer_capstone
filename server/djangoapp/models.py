@@ -26,11 +26,11 @@ class CarModel(models.Model):
     ]
 
     car_make = models.ForeignKey(
-        CarMake, 
+        CarMake,
         on_delete=models.CASCADE
     )
     dealer_id = models.IntegerField(
-        blank=True, 
+        blank=True,
         null=True
     )  # Allow blank and null values
     name = models.CharField(max_length=50)

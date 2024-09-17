@@ -125,7 +125,7 @@ def get_dealer_details(request, dealer_id):
     if dealer_id:
         endpoint = f"/fetchDealer/{dealer_id}"
         dealership = get_request(endpoint)
- 
+
         if dealership:
             return JsonResponse({
                 "status": 200,
